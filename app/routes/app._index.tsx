@@ -30,20 +30,20 @@ export default function Index() {
   };
 
   return (
-    <s-page heading="Welcome to EasyWha">
+    <s-page heading="Bienvenido a EasyWha">
       <s-section>
         <s-card padding="500">
           <s-stack gap="small-100">
             <s-heading>
-              Your WhatsApp-ready theme starts here
+              Tu tema con WhatsApp comienza aquí
             </s-heading>
             <s-text>
-              EasyWha helps you connect customers with a one-click WhatsApp
-              experience right from your storefront. Head to the theme editor to
-              enable the app block and see it live.
+              EasyWha te ayuda a conectar con tus clientes con un botón de
+              WhatsApp en un solo click desde tu tienda. Ve al editor de temas
+              para habilitar el bloque de la app y verlo en vivo.
             </s-text>
             <s-link href={themeEditorUrl}>
-              Open theme editor
+              Abrir editor de temas
             </s-link>
           </s-stack>
         </s-card>
@@ -51,11 +51,11 @@ export default function Index() {
       <s-section>
         <s-card padding="500">
           <s-stack>
-            <s-heading>What you can do next</s-heading>
+            <s-heading>Qué puedes hacer ahora</s-heading>
             <ul>
-              <li>Add the EasyWha block to your product template</li>
-              <li>Preview the WhatsApp button on desktop and mobile.</li>
-              <li> Publish when you love the result</li>
+              <li>Agrega el bloque de EasyWha a tu plantilla de producto.</li>
+              <li>Previsualiza el botón de WhatsApp en desktop y móvil.</li>
+              <li>Publica cuando te encante el resultado.</li>
             </ul>
           </s-stack>
         </s-card>
