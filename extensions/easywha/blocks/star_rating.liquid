@@ -1,0 +1,98 @@
+{% assign position = block.settings.position | default: "bottom-right" %}
+{% assign phone = block.settings.phone | default: "" %}
+{% assign image_url = block.settings.imageUrl | default: "" %}
+{% assign default_message = block.settings.defaultMessage | default: "" %}
+{% assign encoded_message = default_message | url_encode %}
+
+{% if phone != blank %}
+  <div
+    id="easywha-whatsapp-button"
+    data-phone="{{ phone }}"
+    data-message="{{ encoded_message }}"
+    style="position: fixed; z-index: 9999; bottom: 24px;"
+  >
+    <button
+      type="button"
+      aria-label="WhatsApp"
+      style="border: none; background: transparent; cursor: pointer;"
+    >
+      {% if image_url != blank %}
+        <img
+          src="{{ image_url }}"
+          alt="WhatsApp"
+          width="56"
+          height="56"
+          loading="lazy"
+          style="display: block; border-radius: 50%;"
+        >
+      {% else %}
+        <span
+          style="display: inline-block; padding: 12px 16px; border-radius: 999px; background: #25D366; color: #fff; font-weight: 600;"
+        >
+          WhatsApp
+        </span>
+      {% endif %}
+    </button>
+  </div>
+{% endif %}
+
+<script>
+  (function () {
+    var container = document.getElementById("easywha-whatsapp-button");
+    if (!container) return;
+
+    var phone = container.getAttribute("data-phone");
+    var message = container.getAttribute("data-message") || "";
+    if (!phone) return;
+
+    var position = "{{ position }}" === "bottom-left" ? "bottom-left" : "bottom-right";
+    container.style.left = position === "bottom-right" ? "24px" : "auto";
+    container.style.right = position === "bottom-left" ? "24px" : "auto";
+
+    var link = "https://wa.me/" + encodeURIComponent(phone) + "?text=" + message;
+    var button = container.querySelector("button");
+    if (!button) return;
+
+    button.addEventListener("click", function () {
+      window.open(link, "_blank", "noopener,noreferrer");
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "WhatsApp Button",
+  "target": "body",
+  "settings": [
+    {
+      "type": "text",
+      "id": "imageUrl",
+      "label": "Logo (URL)",
+      "default": "https://easywha.vercel.app/whatsapp.png"
+    },
+    {
+      "type": "select",
+      "id": "position",
+      "label": "Posición",
+      "default": "bottom-left",
+      "options": [
+        { "value": "bottom-right", "label": "Abajo derecha" },
+        { "value": "bottom-left", "label": "Abajo izquierda" }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Teléfono",
+      "default": "51999999999"
+    },
+    {
+      "type": "textarea",
+      "id": "defaultMessage",
+      "label": "Mensaje",
+      "default": "¡Hola! 👋\nVengo desde su tienda en línea y me gustaría comprar o recibir información sobre sus productos."
+    }
+  ]
+}
+{% endschema %}
+
