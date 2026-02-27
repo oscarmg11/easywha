@@ -30,7 +30,7 @@ export default function Index() {
   };
 
   return (
-    <s-page heading="Bienvenido a EasyWha">
+    <s-page heading="Whatsapp Chat Button">
       <s-section>
         <s-card padding="500">
           <s-stack gap="small-100">
