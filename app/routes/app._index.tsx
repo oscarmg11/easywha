@@ -1,33 +1,20 @@
-import { useMemo } from "react";
 import type { HeadersFunction, LoaderFunctionArgs } from "react-router";
 import { useLoaderData } from "react-router";
 import { authenticate } from "../shopify.server";
 import { boundary } from "@shopify/shopify-app-react-router/server";
+import { useAppBridge } from "@shopify/app-bridge-react";
+import { Redirect } from "@shopify/app-bridge/actions";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   await authenticate.admin(request);
-  const url = new URL(request.url);
-  const shop = url.searchParams.get("shop");
-  const shopHandle = shop?.replace(".myshopify.com", "") ?? "";
+  const appId = process.env.SHOPIFY_API_KEY ?? "";
+  const extensionId = process.env.SHOPIFY_THEME_EXTENSION_ID ?? "";
 
-  return { shopHandle };
+  return { appId, extensionId };
 };
 
 export default function Index() {
-  const { shopHandle } = useLoaderData<typeof loader>();
-
-  const themeEditorUrl = useMemo(() => {
-    if (!shopHandle) {
-      return "https://admin.shopify.com/themes/current/editor?context=apps";
-    }
-
-    return `https://admin.shopify.com/store/${shopHandle}/themes/current/editor?context=apps`;
-  }, [shopHandle]);
-
-  const handleOpenThemeEditor = () => {
-    const target = window.top ?? window;
-    target.location.assign(themeEditorUrl);
-  };
+  const { appId, extensionId } = useLoaderData<typeof loader>();
 
   return (
     <s-page heading="Whatsapp Chat Button">
@@ -42,9 +29,10 @@ export default function Index() {
               WhatsApp en un solo click desde tu tienda. Ve al editor de temas
               para habilitar el bloque de la app y verlo en vivo.
             </s-text>
-            <s-link href={themeEditorUrl}>
-              Abrir editor de temas
-            </s-link>
+            <GoToThemeEditorButton
+              appId={appId}
+              extensionId={extensionId}
+            />
           </s-stack>
         </s-card>
       </s-section>
@@ -62,6 +50,27 @@ export default function Index() {
       </s-section>
     </s-page>
   );
+}
+
+function GoToThemeEditorButton({
+  appId,
+  extensionId,
+}: {
+  appId: string;
+  extensionId: string;
+}) {
+
+  const baseUrl =
+      "https://admin.shopify.com/themes/current/editor?context=apps";
+    const url =
+      appId && extensionId
+        ? `${baseUrl}&activateAppId=${appId}/${extensionId}`
+        : baseUrl;
+
+  //@ts-ignore
+  return <s-link href={url} target="_top" rel="noreferrer">
+    Open Theme Editor
+  </s-link>;
 }
 
 export const headers: HeadersFunction = (headersArgs) => {
