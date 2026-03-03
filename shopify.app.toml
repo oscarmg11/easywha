@@ -2,7 +2,7 @@
 
 client_id = "7de20cb4465f53fb2a2b724d6cbed624"
 name = "Whatsapp Chat Button"
-application_url = "https://example.com"
+application_url = "https://easywha.vercel.app"
 embedded = true
 
 [build]
