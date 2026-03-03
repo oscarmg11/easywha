@@ -24,4 +24,4 @@ api_version = "2026-04"
 scopes = ""
 
 [auth]
-redirect_urls = [ "htpps://easywha.vercel.app/api/auth" ]
+redirect_urls = [ "https://easywha.vercel.app/api/auth" ]
