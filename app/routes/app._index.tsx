@@ -69,7 +69,7 @@ function GoToThemeEditorButton({
 
   //@ts-ignore
   return <s-link href={url} target="_top" rel="noreferrer">
-    Open Theme Editor
+    Abrir Theme Editor
   </s-link>;
 }
 
