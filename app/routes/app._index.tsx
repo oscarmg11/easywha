@@ -23,7 +23,7 @@ export default function Index() {
 
   useEffect(() => {
     fetcher.submit(null, { method: "post" });
-  }, [fetcher])
+  }, [])
 
   return (
     <s-page heading="Whatsapp Chat Button">
