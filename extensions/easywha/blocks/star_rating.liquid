@@ -46,8 +46,8 @@
     if (!phone) return;
 
     var position = "{{ position }}" === "bottom-left" ? "bottom-left" : "bottom-right";
-    container.style.left = position === "bottom-left" ? "24px" : "auto";
-    container.style.right = position === "bottom-right" ? "24px" : "auto";
+    container.style.left = position === "bottom-right" ? "24px" : "auto";
+    container.style.right = position === "bottom-left" ? "24px" : "auto";
 
     var link = "https://wa.me/" + encodeURIComponent(phone) + "?text=" + message;
     var button = container.querySelector("button");
