@@ -9,7 +9,18 @@
     id="easywha-whatsapp-button"
     data-phone="{{ phone }}"
     data-message="{{ encoded_message }}"
-    style="position: fixed; z-index: 9999; bottom: 24px;"
+    style="
+      position: fixed; 
+      z-index: 9999; 
+      bottom: 24px;
+      {% if position == 'bottom-left' %}
+        left: 24px;
+        right: auto;
+      {% else %}
+        right: 24px;
+        left: auto;
+      {% endif %}
+    "
   >
     <button
       type="button"
@@ -44,11 +55,7 @@
     var phone = container.getAttribute("data-phone");
     var message = container.getAttribute("data-message") || "";
     if (!phone) return;
-
-    var position = "{{ position }}" === "bottom-left" ? "bottom-left" : "bottom-right";
-    container.style.left = position === "bottom-left" ? "24px" : "auto";
-    container.style.right = position === "bottom-right" ? "24px" : "auto";
-
+    
     var link = "https://wa.me/" + encodeURIComponent(phone) + "?text=" + message;
     var button = container.querySelector("button");
     if (!button) return;
