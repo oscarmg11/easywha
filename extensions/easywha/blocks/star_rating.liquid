@@ -55,7 +55,7 @@
     var phone = container.getAttribute("data-phone");
     var message = container.getAttribute("data-message") || "";
     if (!phone) return;
-    
+
     var link = "https://wa.me/" + encodeURIComponent(phone) + "?text=" + message;
     var button = container.querySelector("button");
     if (!button) return;
@@ -83,8 +83,8 @@
       "label": "Posición",
       "default": "bottom-right",
       "options": [
-        { "value": "bottom-right", "label": "Abajo derecha" },
-        { "value": "bottom-left", "label": "Abajo izquierda" }
+        { "value": "bottom-right", "label": "Abajo izquierda" },
+        { "value": "bottom-left", "label": "Abajo derecha" }
       ]
     },
     {
