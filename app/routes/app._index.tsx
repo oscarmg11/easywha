@@ -1,9 +1,8 @@
-import type { HeadersFunction, LoaderFunctionArgs } from "react-router";
-import { useLoaderData } from "react-router";
+import type { ActionFunctionArgs, HeadersFunction, LoaderFunctionArgs } from "react-router";
+import { useFetcher, useLoaderData } from "react-router";
 import { authenticate } from "../shopify.server";
 import { boundary } from "@shopify/shopify-app-react-router/server";
-import { useAppBridge } from "@shopify/app-bridge-react";
-import { Redirect } from "@shopify/app-bridge/actions";
+import { useEffect } from "react";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   await authenticate.admin(request);
@@ -13,8 +12,18 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   return { appId, extensionId };
 };
 
+export const action = async ({ request }: ActionFunctionArgs) => {
+  await authenticate.admin(request);
+  return null;
+}
+
 export default function Index() {
   const { appId, extensionId } = useLoaderData<typeof loader>();
+  const fetcher = useFetcher();
+
+  useEffect(() => {
+    fetcher.submit(null, { method: "post" });
+  }, [fetcher])
 
   return (
     <s-page heading="Whatsapp Chat Button">
