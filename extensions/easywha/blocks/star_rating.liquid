@@ -2,6 +2,8 @@
 {% assign phone = block.settings.phone | default: "" %}
 {% assign image_url = block.settings.imageUrl | default: "" %}
 {% assign default_message = block.settings.defaultMessage | default: "" %}
+{% assign offset_x = block.settings.offsetX | default: 0 | plus: 0 | round %}
+{% assign offset_y = block.settings.offsetY | default: 0 | plus: 0 | round %}
 {% assign encoded_message = default_message | url_encode %}
 
 {% if phone != blank %}
@@ -13,6 +15,7 @@
       position: fixed; 
       z-index: 9999; 
       bottom: 24px;
+      transform: translate({{ offset_x }}px, {{ offset_y }}px);
       {% if position == 'bottom-left' %}
         left: 24px;
         right: auto;
@@ -88,6 +91,18 @@
       ]
     },
     {
+      "type": "number",
+      "id": "offsetX",
+      "label": "Offset X",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "offsetY",
+      "label": "Offset Y",
+      "default": 0
+    },
+    {
       "type": "text",
       "id": "phone",
       "label": "Teléfono",
@@ -102,4 +117,3 @@
   ]
 }
 {% endschema %}
-
