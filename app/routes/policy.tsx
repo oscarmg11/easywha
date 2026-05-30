@@ -10,7 +10,7 @@ export default function PrivacyPolicy() {
 
 			<section style={{ marginBottom: "1.5rem" }}>
 				<p>
-					EasyWha (“la app”) ayuda a los comercios de Shopify a habilitar un
+					Whatsapp Chat Button (“la app”) ayuda a los comercios de Shopify a habilitar un
 					botón de WhatsApp en su tienda. Esta política explica qué datos
 					recopilamos, cómo los usamos y cómo puedes contactarnos.
 				</p>
@@ -36,7 +36,7 @@ export default function PrivacyPolicy() {
 			<section style={{ marginBottom: "1.5rem" }}>
 				<h2>Cómo usamos la información</h2>
 				<ul>
-					<li>Para proveer y mantener el servicio de EasyWha.</li>
+					<li>Para proveer y mantener el servicio de Whatsapp Chat Button.</li>
 					<li>Para personalizar la configuración del botón de WhatsApp.</li>
 					<li>
 						Para mejorar el rendimiento, la seguridad y la estabilidad de la
@@ -58,7 +58,7 @@ export default function PrivacyPolicy() {
 				<h2>Retención y eliminación</h2>
 				<p>
 					Conservamos los datos mientras tu tienda tenga la app instalada. Si
-					desinstalas EasyWha, eliminamos la información de la tienda según los
+					desinstalas Whatsapp Chat Button, eliminamos la información de la tienda según los
 					requisitos de Shopify y nuestras obligaciones legales.
 				</p>
 			</section>
@@ -68,14 +68,6 @@ export default function PrivacyPolicy() {
 				<p>
 					Implementamos medidas razonables para proteger la información contra
 					accesos no autorizados, pérdidas o alteraciones.
-				</p>
-			</section>
-
-			<section style={{ marginBottom: "1.5rem" }}>
-				<h2>Contacto</h2>
-				<p>
-					Si tienes preguntas sobre esta política, escríbenos a
-					<a href="mailto:soporte@easywha.com"> soporte@easywha.com</a>.
 				</p>
 			</section>
 		</main>
